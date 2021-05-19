@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    Rigidbody rb;
+    public Rigidbody rb;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -19,7 +19,7 @@ public class BulletController : MonoBehaviour
 
     private void OnEnable()
     {
-        rb.AddForce(Vector3.up,ForceMode.Acceleration);
+        rb.AddForce(Vector3.up*10,ForceMode.Acceleration);
         StartCoroutine(poolReturn(3f));
     }
 
@@ -27,6 +27,7 @@ public class BulletController : MonoBehaviour
     {
         PlayerController.bullets.Remove(gameObject);
         yield return new WaitForSeconds(time);
+        PlayerController.disabledBullets.Add(gameObject);
         gameObject.SetActive(false);
     }
 
