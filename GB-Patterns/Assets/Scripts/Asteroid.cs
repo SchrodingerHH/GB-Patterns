@@ -8,11 +8,11 @@ public class Asteroid : Enemy
     private void Start()
     {
         moveSpeed = 2;
+        Move();
     }
 
     void Update()
     {
-        Move();
     }
     
 }

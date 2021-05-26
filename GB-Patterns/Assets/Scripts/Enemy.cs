@@ -13,14 +13,22 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(randomDir, -moveSpeed);
     }
 
-    public void RandomSpeed(float minmax)
+    public virtual void RandomSpeed(params float[] param)
     {
-        randomDir = Random.Range(-minmax, minmax);
+        randomDir = Random.Range(-param[0], param[1]);
     }
 
-    public void SetPhysicsMaterial()
+    public static Asteroid createAsteroidEnemy(Vector2 coords)
     {
-        
+        var enemy = Instantiate(Resources.Load<Asteroid>("Enemy/Asteroid/Asteroid1"),new Vector3(coords.x,coords.y,0),Quaternion.identity);
+        Debug.Log("enemy instantiated");
+        return enemy;
     }
 
+    public static Catsteroid createCatsteroidEnemy(Vector2 coords)
+    {
+        var enemy = Instantiate(Resources.Load<Catsteroid>("Enemy/Asteroid"));
+
+        return enemy;
+    }
 }
