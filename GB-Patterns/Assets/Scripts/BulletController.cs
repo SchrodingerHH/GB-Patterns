@@ -19,7 +19,7 @@ public class BulletController : MonoBehaviour
 
     private void OnEnable()
     {
-        rb.AddForce(Vector3.up*10,ForceMode.Acceleration);
+        rb.AddForce(transform.up*100,ForceMode.Acceleration);
         StartCoroutine(poolReturn(3f));
     }
 

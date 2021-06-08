@@ -38,15 +38,27 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && bullets.Count!=0)
+        /*if (Input.GetKeyDown(KeyCode.Space) && bullets.Count!=0)
         {
             bullets[0].SetActive(true);
-        }
+        }*/
     }
 
     private void FixedUpdate()
     {
         RBMove(speedMult);
+        RotateToCursor();
+    }
+
+    void RotateToCursor()
+    {
+        Vector3 mousePosLocal = Input.mousePosition;
+        Vector3 mousePosGlobal = Camera.main.ScreenToWorldPoint(mousePosLocal);
+        Vector3 ViewVector = mousePosGlobal - transform.position;
+
+        float targetAngle = Vector2.SignedAngle(Vector3.up, ViewVector);
+
+        transform.rotation = Quaternion.Euler(0, 0, targetAngle);
     }
 
     void RBMove(float speed)
