@@ -11,13 +11,6 @@ public class GameManager : MonoBehaviour
         Enemy.createAsteroidEnemy(getRandomPos());
     }
 
-    
-    void Update()
-    {
-        
-    }
-
-
     Vector2 getRandomPos()
     {
         Vector3 boundsR = Camera.main.ViewportToWorldPoint(new Vector3(0,0,Camera.main.nearClipPlane));

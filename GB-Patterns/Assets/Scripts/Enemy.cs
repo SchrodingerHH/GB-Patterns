@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IHit
 {
     public float moveSpeed;
     public Rigidbody2D rb;
     public float randomDir;
+
+    public event System.Action<float> OnHitChange = delegate(float f) { };
 
     public virtual void Move()
     {
@@ -30,5 +32,10 @@ public class Enemy : MonoBehaviour
         var enemy = Instantiate(Resources.Load<Catsteroid>("Enemy/Asteroid"));
 
         return enemy;
+    }
+
+    public void Hit(float damage)
+    {
+        OnHitChange.Invoke(damage);
     }
 }
